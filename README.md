@@ -16,6 +16,6 @@ curl localhost:8080/src/index.php
 ```
 git checkout santander
 
-docker build --file Dokerfile --tag manyogil/phpinfo:santander . 
+docker build --file Dockerfile --tag manyogil/phpinfo:santander . 
 ```
 
