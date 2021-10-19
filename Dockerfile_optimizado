@@ -1,0 +1,5 @@
+from library/alpine:latest
+run apk add php
+
+from scratch 
+copy --from=0 / /
