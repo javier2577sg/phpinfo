@@ -1,4 +1,4 @@
-from library/alpine:latest
+from library/alpine:3.14.2
 run apk add php
 
 from scratch 
