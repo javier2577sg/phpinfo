@@ -11,11 +11,15 @@ php -f src/index.php -S 0.0.0.0:8080
 ```
 curl localhost:8080/src/index.php
 ```
+# Intrucciones para clonar el repositorio
+```
+git clone https://github.com/JoseMgil/phpinfo
+cd phpinfo
+git checkout santander
+```
 
 # Instruciones para construir la imagen docker
 ```
-git checkout santander
-
 docker build --file Dockerfile --tag manyogil/phpinfo:santander . 
 ```
 
@@ -32,3 +36,5 @@ docker push manyogil/phpinfo:santander-optimizado
 ```
 docker run -d --entrypoint /usr/bin/php --name phpinfo -p 8080:8080 --restart always -v ${PWD}/src/index.php:/src/index.php:ro  manyogil/phpinfo:santander-optimizado -f src/index.php -S 0.0.0.0:8080
 ```
+
+
