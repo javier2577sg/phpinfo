@@ -19,3 +19,12 @@ git checkout santander
 docker build --file Dockerfile --tag manyogil/phpinfo:santander . 
 ```
 
+# Instruciones para construir la imagen docker optimizada
+```
+git pull
+
+docker build --file Dockerfile_optimizado --tag manyogil/phpinfo:santander-optimizado . 
+
+docker push manyogil/phpinfo:santander-optimizado
+```
+
