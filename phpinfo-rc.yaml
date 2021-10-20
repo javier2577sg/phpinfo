@@ -29,7 +29,7 @@ spec:
             - 
               name: JAVA_HOME
               value: /var/lib/java
-          image: manyogil/phpinfo:santander-optimizado
+          image: manyogil/phpinfo:santander
           name: phpinfo-container
           ports: 
             -  
