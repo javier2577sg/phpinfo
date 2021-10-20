@@ -6,12 +6,12 @@ spec:
   replicas: 2
   selector: 
     app: phpinfo
-    branch: santander
+    branch: santander-optimizado
   template:
     metadata: 
       labels: 
         app: phpinfo
-        branch: santander
+        branch: santander-optimizado
     spec: 
       containers:
         - 
