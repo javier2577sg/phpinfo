@@ -1,18 +1,1 @@
-name: CI
-on:
-  push:
-    branches: [santander]
-jobs:
-  docker:
-    runs-on: ubuntu-latest
-    steps: 
-      - 
-        name: checkout
-        uses: actions/checkout@v2
-      - 
-        name: docker-build
-        uses: actions/
-  swarm: 
-  kubernetes: 
-  openshift: 
-  
+      
