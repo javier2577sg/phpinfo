@@ -42,6 +42,9 @@ jobs:
         name: get-node-ip
         run: ifconfig | grep eth0 -A 1 | awk /inet/'{ print $2 }'
       - 
+        name: docker-edit-compose-image
+        run: sed -i /image:.*phpinfo/s/image:.*$/image:' 'phpinfo:\${uuid}/ docker-compose.yaml
+      - 
         name: docker-swarm-deploy
         run: docker stack deploy -c docker-compose.yaml phpinfo
       - 
