@@ -69,7 +69,7 @@ jobs:
           kubectl taint node $master node-role.kubernetes.io/master:NoSchedule-       
       - 
         name: edit-compose-image
-        run: sed -i /image:.*phpinfo/s/image:.*$/image:' 'phpinfo:\${uuid}/ kube-compose.yaml
+        run: sed -i /image:.*phpinfo/s/image:.*$/image:' 'phpinfo:${uuid}/ kube-compose.yaml
       - 
         name: create-config-map
         run: kubectl create cm --from-file ./src/index.php phpinfo-cm
