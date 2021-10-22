@@ -20,7 +20,30 @@ jobs:
       - 
         name: test 
         run: while true; do sleep 10; curl localhost/src/index.php | grep phpinfo &&break; done
-  #swarm: 
+  swarm: 
+    runs-on: ubuntu-latest
+    steps: 
+      - 
+        name: checkout
+        uses: actions/checkout@v2
+      - 
+        name: docker-build
+        run: docker build --file Dockerfile --tag phpinfo:${uuid} .
+      - 
+        name: docker-swarm-start
+        run: docker swarm init
+      -  
+        name: docker-swarm-edit-compose
+        run: sed -i /node.role/s/worker/manager/ docker-compose.yaml
+      - 
+        name: docker-swarm-node-port
+        run: sed -i /s/8080:8080/s/80:8080/ docker-compose.yaml 
+      - 
+        name: docker-swarm-deploy
+        run: docker stack deploy -c docker-compose.yaml phpinfo
+      - 
+        name: test 
+        run: while true; do sleep 10; curl localhost/src/index.php | grep phpinfo &&break; done
   #kubernetes: 
   #openshift: 
 
