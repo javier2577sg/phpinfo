@@ -37,7 +37,7 @@ jobs:
         run: sed -i /node.role/s/worker/manager/ docker-compose.yaml
       - 
         name: docker-swarm-node-port
-        run: sed -i /s/8080:8080/s/80:8080/ docker-compose.yaml 
+        run: sed -i /s/8080:8080/80:8080/ docker-compose.yaml 
       - 
         name: docker-swarm-deploy
         run: docker stack deploy -c docker-compose.yaml phpinfo
