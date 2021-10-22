@@ -71,11 +71,11 @@ jobs:
         name: edit-compose-image
         run: sed -i /image:.*phpinfo/s/image:.*$/image:' 'phpinfo:\${uuid}/ kube-compose.yaml
       - 
+        name: create-config-map
+        run: kubectl create cm --from-file ./src/index.php phpinfo-cm
+      - 
         name: docker-swarm-deploy
         run: kubectl apply -f kube-compose.yaml 
-      - 
-        name: check-error 
-        run: kubectl describe pod
       - 
         name: test-inside
         run:  while true; do sleep 10; kubectl logs svc/phpinfo-svc | grep PHP &&break; done       
