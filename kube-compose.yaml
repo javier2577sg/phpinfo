@@ -30,7 +30,6 @@ spec:
               name: JAVA_HOME
               value: /var/lib/java
           image: manyogil/phpinfo:santander
-          imagePullPolicy: Always
           name: phpinfo-container
           ports: 
             -  
