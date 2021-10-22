@@ -17,7 +17,7 @@ services:
     deploy: 
       placement: 
         constraints:
-          - node.role == worker
+          - node.role == manager
     entrypoint: /usr/bin/php
     image: manyogil/phpinfo:santander
     ports: 
