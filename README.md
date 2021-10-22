@@ -41,3 +41,12 @@ docker run -d --entrypoint /usr/bin/php --name phpinfo -p 8080:8080 --restart al
 ```
 docker stack deploy -c docker-compose.yaml phpinfo
 ```
+
+# Instrucciones para desplegar la aplicacion en Kubernetes (Openshift Playground) 
+```
+#Crear el congif map 
+kubectl create cm --from-file ./src/index.php phpinfo-cm
+
+#Crear los componentes (Replication controles & Services) 
+kubectl apply -f kube-compose.yaml
+```
