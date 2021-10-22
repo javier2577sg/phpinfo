@@ -50,6 +50,32 @@ jobs:
       - 
         name: test 
         run: while true; do sleep 10; curl $( ifconfig | grep eth0 -A 1 | awk /inet/'{ print $2 }')/src/index.php | grep phpinfo &&break; done
-  #kubernetes: 
+  kubernetes: 
+    runs-on: ubuntu-latest
+    steps: 
+      - 
+        name: checkout
+        uses: actions/checkout@v2
+      - 
+        name: docker-build
+        run: docker build --file Dockerfile --tag phpinfo:${uuid} .
+      - 
+        name: kubernetes-init
+        run: |
+          git clone --single-branch -b v1.2 https://github.com/academiaonline/kubernetes.git ${uuid}
+          source ${uuid}/bin/cluster/ubuntu18/install-docker-kubelet.sh
+          source ${uuid}/bin/cluster/ubuntu18/install-leader.sh
+          master=$( kubectl get node | awk /master/'{ print $1}' )
+          kubectl taint node $master node-role.kubernetes.io/master/:NoSchedule-
+          
+      - 
+        name: docker-edit-compose-image
+        run: sed -i /image:.*phpinfo/s/image:.*$/image:' 'phpinfo:\${uuid}/ kube-compose.yaml
+      - 
+        name: docker-swarm-deploy
+        run: kubectl apply -f kube-compose.yaml 
+      - 
+        name: test 
+        run: while true; do sleep 10; curl $( ifconfig | grep eth0 -A 1 | awk /inet/'{ print $2 }')/src/index.php | grep phpinfo &&break; done
   #openshift: 
 
