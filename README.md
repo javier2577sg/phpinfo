@@ -42,3 +42,4 @@ docker run -d --entrypoint /usr/bin/php --name phpinfo -p 8080:8080 --restart al
 ```
 docker stack deploy -c docker-compose.yaml phpinfo
 ```
+
